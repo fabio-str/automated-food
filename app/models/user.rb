@@ -4,4 +4,8 @@ class User < ApplicationRecord
   include Billable
 
   scope :subscribed, -> { where(paying_customer: true) }
+
+  has_one :addresses
+  has_many :orders
+  has_many :dishes, through: :projects
 end
