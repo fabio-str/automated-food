@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_26_120649) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_102841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_120649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurants_id"], name: "index_dishes_on_restaurants_id"
+  end
+
+  create_table "nutrition_profiles", force: :cascade do |t|
+    t.string "sex"
+    t.integer "age"
+    t.integer "height"
+    t.float "weight"
+    t.string "activity_level"
+    t.string "health_goal"
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_nutrition_profiles_on_users_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -95,17 +108,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_120649) do
     t.string "stripe_customer_id"
     t.boolean "paying_customer", default: false
     t.string "stripe_subscription_id"
-    t.string "sex"
-    t.integer "age"
-    t.integer "height"
-    t.float "weight"
-    t.string "activity_level"
-    t.string "health_goal"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "addresses", "users", column: "users_id"
   add_foreign_key "dishes", "restaurants", column: "restaurants_id"
+  add_foreign_key "nutrition_profiles", "users", column: "users_id"
   add_foreign_key "orders", "users", column: "users_id"
 end

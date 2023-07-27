@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :orders
+
   root 'pages#home'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :billing_portal, only: [:create]
   match '/billing_portal' => 'billing_portal#create', via: [:get]
   match '/cancel' => 'billing_portal#destroy', via: [:get]
+
+  resources :orders
+  resource :addresses
+  resource :nutrition_profiles, only: [:edit, :update]
+
 
   # static pages
   pages = %w(

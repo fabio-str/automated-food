@@ -7,5 +7,6 @@ class User < ApplicationRecord
 
   has_one :addresses
   has_many :orders
+  has_one :nutrition_profiles
   has_many :dishes, through: :projects
 end
