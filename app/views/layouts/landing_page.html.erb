@@ -12,9 +12,10 @@
   </head>
 
   <body class="h-full">
-    <main>
+    <main class="container mx-auto mt-14 px-6">
       <%= render "shared/flash" %>
-      <%= render "shared/shell" %>
+      <%= render "shared/header" %>
+      <%= yield %>
     </main>
 
     <%= render partial: "shared/script_tags" %>
