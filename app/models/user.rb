@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   scope :subscribed, -> { where(paying_customer: true) }
 
-  has_one :addresses
+  has_many :addresses
   has_many :orders
-  has_one :nutrition_profiles
-  has_many :dishes, through: :projects
+  has_one :nutrition_profile
+  has_many :dishes, through: :orders
 end

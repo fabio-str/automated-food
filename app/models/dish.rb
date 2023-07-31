@@ -1,4 +1,4 @@
 class Dish < ApplicationRecord
-  belongs_to :restaurants
-  belongs_to :orders
+  belongs_to :restaurant
+  belongs_to :order
 end
