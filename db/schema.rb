@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_080758) do
     t.string "street"
     t.string "postcode"
     t.string "delivery_time"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "region"
-    t.index ["users_id"], name: "index_addresses_on_users_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -47,10 +47,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_080758) do
     t.string "price"
     t.string "ingredients"
     t.string "url"
-    t.bigint "restaurants_id", null: false
+    t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurants_id"], name: "index_dishes_on_restaurants_id"
+    t.index ["restaurant_id"], name: "index_dishes_on_restaurant_id"
   end
 
   create_table "nutrition_profiles", force: :cascade do |t|
@@ -60,19 +60,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_080758) do
     t.float "weight"
     t.string "activity_level"
     t.string "health_goal"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_nutrition_profiles_on_users_id"
+    t.index ["user_id"], name: "index_nutrition_profiles_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_rating"
     t.string "user_feedback"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_orders_on_users_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -113,8 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_080758) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "users", column: "users_id"
-  add_foreign_key "dishes", "restaurants", column: "restaurants_id"
-  add_foreign_key "nutrition_profiles", "users", column: "users_id"
-  add_foreign_key "orders", "users", column: "users_id"
+  add_foreign_key "addresses", "users"
+  add_foreign_key "dishes", "restaurants"
+  add_foreign_key "nutrition_profiles", "users"
+  add_foreign_key "orders", "users"
 end

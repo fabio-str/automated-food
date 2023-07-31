@@ -7,7 +7,7 @@ class CreateNutritionProfiles < ActiveRecord::Migration[7.0]
       t.float :weight
       t.string :activity_level
       t.string :health_goal
-      t.references :users, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
