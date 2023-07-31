@@ -2,7 +2,7 @@
 
 <div>
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-  <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
+  <div id="backdrop" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
     <!--
       Off-canvas menu backdrop, show/hide based on off-canvas menu state.
 
@@ -38,7 +38,7 @@
             To: "opacity-0"
         -->
         <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-          <button type="button" class="-m-2.5 p-2.5">
+          <button type="button" id="close-sidebar-button" class="-m-2.5 p-2.5">
             <span class="sr-only">Close sidebar</span>
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -46,8 +46,7 @@
           </button>
         </div>
 
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
+        <div id="sidebar" class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
           <div class="flex h-16 shrink-0 items-center">
             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
           </div>
@@ -99,7 +98,6 @@
 
   <!-- Static sidebar for desktop -->
   <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-    <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
       <div class="flex h-16 shrink-0 items-center">
         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
@@ -126,7 +124,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                <a href="/addresses/new" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                 </svg>
@@ -149,7 +147,7 @@
   </div>
 
   <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-    <button type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden">
+    <button id="open-sidebar-button" type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden">
       <span class="sr-only">Open sidebar</span>
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -164,3 +162,28 @@
     </div>
   </main>
 </div>
+
+<script>
+// Getting the elements
+const openSidebarButton = document.querySelector("#open-sidebar-button");
+const closeSidebarButton = document.querySelector("#close-sidebar-button");
+// const sidebar = document.querySelector("#sidebar");
+const sidebarBackdrop = document.querySelector("#backdrop");
+
+// Function to open the sidebar
+function openSidebar() {
+  // Adjust the sidebar style
+  sidebarBackdrop.classList.remove('hidden');
+};
+
+// Function to close the sidebar
+function closeSidebar() {
+  // Adjust the sidebar style
+  sidebarBackdrop.classList.add('hidden');
+};
+
+// Open sidebar when button is clicked
+openSidebarButton.addEventListener("click", openSidebar);
+// Close sidebar when button is clicked
+closeSidebarButton.addEventListener("click", closeSidebar);
+</script>
