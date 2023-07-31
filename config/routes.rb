@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   match '/billing_portal' => 'billing_portal#create', via: [:get]
   match '/cancel' => 'billing_portal#destroy', via: [:get]
 
+  resources :addresses
+  resources :nutrition_profiles, only: [:edit, :update]
   resources :orders
-  resource :addresses
-  resource :nutrition_profiles, only: [:edit, :update]
-
+  
 
   # static pages
   pages = %w(
