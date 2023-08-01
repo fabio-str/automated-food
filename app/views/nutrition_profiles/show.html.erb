@@ -1,0 +1,24 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl pb-12">Nutrition Profile</h1>
+
+<% if @nutrition_profile.nil? %>
+  <p>You have not yet created a nutrition profile.</p>
+<% else %>
+    <p>Sex: <%= @nutrition_profile.sex %></p>
+    <p>Age: <%= @nutrition_profile.age %></p>
+    <p>Height: <%= @nutrition_profile.height %></p>
+    <p>Weight: <%= @nutrition_profile.weight %></p>
+    <p>Activity Level: <%= @nutrition_profile.activity_level %></p>
+    <p>Health Goal: <%= @nutrition_profile.health_goal %></p>
+<% end %>
+
+
+
+<% if @nutrition_profile.nil? %>
+    <%= link_to 'New Nutrition Profile', new_nutrition_profile_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+<% else %>
+    <%= link_to 'Edit Nutrition Profile', edit_nutrition_profile_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+<% end %>
+
+
+</div>

@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   match '/billing_portal' => 'billing_portal#create', via: [:get]
   match '/cancel' => 'billing_portal#destroy', via: [:get]
 
-  resources :addresses
-  resources :nutrition_profiles, only: [:edit, :update]
+  get 'addresses/new_or_edit', to: 'addresses#new_or_edit'
+
+
+  resources :nutrition_profiles
+
   resources :orders
   
 

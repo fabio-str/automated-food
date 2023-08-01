@@ -1,0 +1,14 @@
+<div class="space-y-12">
+
+<% if @nutrition_profile.nil? %>
+  <p>You have not yet created a nutrition profile.</p>
+<% else %>
+    <p>Sex: <%= @nutrition_profile.sex %></p>
+    <p>Age: <%= @nutrition_profile.age %></p>
+    <p>Height: <%= @nutrition_profile.height %></p>
+    <p>Weight: <%= @nutrition_profile.weight %></p>
+    <p>Activity Level: <%= @nutrition_profile.activity_level %></p>
+    <p>Health Goal: <%= @nutrition_profile.health_goal %></p>
+<% end %>
+
+</div>

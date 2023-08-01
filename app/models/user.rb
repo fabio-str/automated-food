@@ -7,6 +7,6 @@ class User < ApplicationRecord
 
   has_many :addresses
   has_many :orders
-  has_one :nutrition_profile
+  has_one :nutrition_profile, dependent: :destroy
   has_many :dishes, through: :orders
 end
