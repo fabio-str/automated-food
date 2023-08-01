@@ -32,13 +32,15 @@ class NutritionProfilesController < ApplicationController
         end
     end
 
-    # def edit
-    #     if @nutrition_profile.update(nutrition_profile_params)
-    #         redirect_to :edit, notice: 'Nutrition Profile was successfully updated.'
-    #     else
-    #         redirect_to :edit, alert: 'Nutrition Profile was not updated. Try again.'
-    #     end
-    # end
+    def update
+        @nutrition_profile = current_user.nutrition_profile
+        
+        if @nutrition_profile.update(nutrition_profile_params)
+          redirect_to @nutrition_profile, notice: 'Nutrition profile was successfully updated.'
+        else
+          render :edit,  alert: 'Nutrition Profile was not updated. Try again.'
+        end
+    end
 
     private
 
