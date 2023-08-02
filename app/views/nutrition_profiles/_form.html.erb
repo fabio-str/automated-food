@@ -17,16 +17,16 @@
         </div>
 
         <div class="col-span-full">
-            <label for="height" class="block text-sm font-medium leading-6 text-gray-900">Height</label>
+            <label for="height" class="block text-sm font-medium leading-6 text-gray-900">Height in cm</label>
             <div class="mt-2">
                 <%= form.number_field :height, id: 'height', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
             </div>
         </div>
 
         <div class="sm:col-span-2 sm:col-start-1">
-            <label for="weight" class="block text-sm font-medium leading-6 text-gray-900">Weight</label>
+            <label for="weight" class="block text-sm font-medium leading-6 text-gray-900">Weight in kg</label>
             <div class="mt-2">
-                <%= form.number_field :weight, id: 'weight', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+                <%= form.number_field :weight, step: :any, id: 'weight', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
             </div>
         </div>
 
