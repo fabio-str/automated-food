@@ -1,0 +1,19 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl pb-12">Delivery Settings</h1>
+
+<% if @address.nil? %>
+  <p>You have not yet created an address yet.</p>
+<% else %>
+  <%= render @address %>
+<% end %>
+
+
+
+<% if @address.nil? %>
+    <%= link_to 'New Address', new_address_path, class: "mt-7 rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+<% else %>
+    <%= link_to 'Edit Address', edit_address_path, class: "mt-7 rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+<% end %>
+
+
+</div>

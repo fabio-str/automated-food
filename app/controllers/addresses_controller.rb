@@ -1,44 +1,47 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:edit, :update, :index]
-
-  def edit
-  end
-
-  def index
-  end
+  before_action :set_address
 
   def show
   end
 
   def new
-    @address = Address.new
+    if current_user.address
+      @address = current_user.address
+    else
+      @address = current_user.build_address
+    end
   end
 
   def create
-    @address = current_user.addresses.build(address_params)
+    @address = current_user.build_addresse(address_params)
 
-    respond_to do |format|
+    if current_user.address.nil?
       if @address.save
-        format.html { redirect_to edit_address_path(@address), notice: "address was successfully created." }
+        redirect_to @address, notice: 'Address was successfully created.'
       else
-        format.html { render :new, status: :unprocessable_entity }
-        p @address.errors.full_messages
+        render :new
+      end
+    else
+      if @address.update(address_params)
+        redirect_to @address, notice: 'Address was updated successfully.'
+      else
+        render :edit, alert: 'Address could not be saved. Please try again.'
       end
     end
   end
 
   def update
    if @address.update(address_params)
-     redirect_to @user, notice: 'Address was successfully updated.'
+     redirect_to @address, notice: 'Address was successfully updated.'
    else
-     render :edit
+     render :edit, alert: 'Address could not be updated. Please try again.'
    end
   end
 
   private 
 
   def set_address
-    @address = Address.find(params[:id])
+    @address = current_user.address
   end
 
   def address_params

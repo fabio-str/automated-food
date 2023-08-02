@@ -12,6 +12,6 @@ class PagesController < ApplicationController
 
   def page
     @page_key = request.path[1..-1]
-    render "pages/#{@page_key}", layout: 'landing_page' # TODO: fix rendering of landing page layout instead of application layout
+    render "pages/#{@page_key}" # TODO: fix rendering of landing page layout instead of application layout
   end
 end
