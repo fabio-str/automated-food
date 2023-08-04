@@ -1,12 +1,13 @@
-require "httparty"
-require 'json'
-
 class GptService
-  include HTTParty
 
-  base_uri "https://api.openai.com/v1/chat/completions"
+  def self.prompt(nutrition_profile, address)
+    "I'm in #{address.city} and would like to order some food for my lunch today at #{address.delivery_time} to #{address.street}.
+    I like Asian and Indian cuisine.
+    The meal should have about 900 calories and should be healthy.
+    I have no dietary preferences or limitations."
+  end
 
-  def initialize
+  def self.chat(nutrition_profile, address)
     @options = {
       headers: {
         "Authorization" => "Bearer #{ENV['OPENAPI_KEY']}",
@@ -16,18 +17,14 @@ class GptService
         model: "gpt-3.5-turbo", 
         messages: [
           { role: "system",    content: "You are a helpful assistant." },
-          { role: "user", content: 'Hello' }
+          { role: "user", content: prompt(nutrition_profile, address) }
         ]
         }.to_json
     }
-  end
 
-  def chat
-    response = self.class.post("https://api.openai.com/v1/chat/completions", @options)
+    response = HTTParty.post("https://api.openai.com/v1/chat/completions", @options)
     response.parsed_response
+    puts response
   end
-end
 
-ai = GptService.new
-response = ai.chat
-puts response
+end
