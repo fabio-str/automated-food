@@ -12,10 +12,10 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
       },
       colors: { // custom color palette for branding
-        'primary': 'rgb(79, 70, 229)',
+        'primary': 'rgb(2, 132, 199)',
         'primary-hover': {
-          '700': '#a4411c',
-          '500': '#EA9A72'
+          '700': '#0369A1',
+          '500': '#0EA5E9'
         }
       }
     },
