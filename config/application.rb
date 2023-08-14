@@ -43,5 +43,10 @@ module AutomaticFood
       g.assets = false # stylesheets
       g.helper = true
     end
+
+
+    # autoload lib directory files (so scrapers are available to call anywhere in the app)
+    config.autoload_paths << Rails.root.join('lib')
+
   end
 end
