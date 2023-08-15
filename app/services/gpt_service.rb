@@ -1,13 +1,13 @@
 class GptService
 
-  def self.prompt(nutrition_profile, address)
-    "I'm in #{address.city} and would like to order some food for my lunch today at #{address.delivery_time} to #{address.street}.
-    I like Asian and Indian cuisine.
-    The meal should have about 900 calories and should be healthy.
-    I have no dietary preferences or limitations."
+  def self.prompt(dish)
+    "Estimate the approximate total calories for #{dish.name} with the following ingredients: #{dish.ingredients}
+    If you don’t have any approximation for an ingredient, don’t include it in your estimate.
+    Format the total calorie approximation like this: „Total Calories: {your result}.
+    Limit your answer to just the result."
   end
 
-  def self.chat(nutrition_profile, address)
+  def self.chat(dish)
     @options = {
       headers: {
         "Authorization" => "Bearer #{ENV['OPENAPI_KEY']}",
@@ -16,15 +16,14 @@ class GptService
       body: {
         model: "gpt-3.5-turbo", 
         messages: [
-          { role: "system",    content: "You are a helpful assistant." },
-          { role: "user", content: prompt(nutrition_profile, address) }
+          { role: "system",    content: "You are a nutritionist who can help with dietary needs by providing recipes, advice on healthy eating habits, and dietary recommendations." },
+          { role: "user", content: prompt(dish) }
         ]
         }.to_json
     }
 
     response = HTTParty.post("https://api.openai.com/v1/chat/completions", @options)
     response.parsed_response
-    puts response
   end
 
 end
