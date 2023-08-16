@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'pages#home'
+  root 'dashboard#index'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
   get 'logout', to: 'pages#logout', as: 'logout'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :nutrition_profiles
   resources :addresses
   resources :orders
+  post '/change_meal', to: 'orders#change_meal', as: 'change_meal'
   
 
   # static pages

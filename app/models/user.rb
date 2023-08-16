@@ -8,5 +8,4 @@ class User < ApplicationRecord
   has_one :address, dependent: :destroy
   has_many :orders
   has_one :nutrition_profile, dependent: :destroy
-  has_many :dishes, through: :orders
 end

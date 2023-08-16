@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   before_action :set_flashes
 
   def index
+    @order = current_user.orders.where(status: 'pending').first
   end
 
   private
