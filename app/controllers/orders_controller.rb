@@ -57,6 +57,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   def destroy
     @order.destroy
+    redirect_to dashboard_index_path, notice: 'Order has been deleted.'
   end
 
   private

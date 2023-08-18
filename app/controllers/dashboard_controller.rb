@@ -4,6 +4,8 @@ class DashboardController < ApplicationController
 
   def index
     @order = current_user.orders.where(status: 'pending').first
+    @nutrition_profile = current_user.nutrition_profile
+    @address = current_user.address
   end
 
   private
