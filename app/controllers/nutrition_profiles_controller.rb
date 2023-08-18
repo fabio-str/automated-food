@@ -7,11 +7,7 @@ class NutritionProfilesController < ApplicationController
     end
 
     def new
-        if current_user.nutrition_profile
-            @nutrition_profile = current_user.nutrition_profile
-          else
-            @nutrition_profile = current_user.build_nutrition_profile
-          end
+        @nutrition_profile = current_user.nutrition_profile || current_user.build_nutrition_profile
     end
 
     def create
@@ -34,7 +30,7 @@ class NutritionProfilesController < ApplicationController
 
     def update
         @nutrition_profile = current_user.nutrition_profile
-        
+
         if @nutrition_profile.update(nutrition_profile_params)
           redirect_to @nutrition_profile, notice: 'Nutrition profile was successfully updated.'
         else
@@ -49,7 +45,7 @@ class NutritionProfilesController < ApplicationController
     end
 
     def nutrition_profile_params
-        params.require(:nutrition_profile).permit(:sex, :age, :height, :weight, :activity_level, :health_goal)
+        params.require(:nutrition_profile).permit(:sex, :age, :height, :weight, :activity_level, :health_goal, :daily_calorie_need)
     end
     
 end
