@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   belongs_to :user
 
+  validates :status, inclusion: { in: %w(pending canceled confirmed delivered), message: "%{value} is not a valid status" }
+
   def self.change_meal(user)
     existing_order = user.orders.where(status: 'pending').first
 

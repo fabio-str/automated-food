@@ -11,6 +11,10 @@ class OrdersController < ApplicationController
   def show
   end
 
+  def edit
+    @order = Order.find(params[:id])
+  end  
+
 
   # GET /orders/new
   def new
@@ -47,10 +51,10 @@ class OrdersController < ApplicationController
   
     if @order
       flash[:notice] = "Your order has been changed successfully."
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = "You don’t have an order yet."
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     end
   end
 
