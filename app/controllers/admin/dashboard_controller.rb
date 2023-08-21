@@ -3,5 +3,6 @@ class Admin::DashboardController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
+    @pending_orders = Order.where(status: 'pending').all
   end
 end
