@@ -115,3 +115,7 @@ end
 
     # IMPROVEMENT IDEAS
     # TODO: Add allergens (click on product, then product info)
+    # TODO: delete drink menu items / Dish.where("ingredients LIKE ?", "%incl.%").destroy_all + Dish.where("ingredients LIKE ?", "%inkl.%").destroy_all
+    # TODO: delete all dishes where ingredients are "" (empty)
+    # TODO: Make prices floats // price_float = dish.price.delete('€').to_f
+    # TODO: Filter out where price < 3 // Dish.where('price_float < ?', 3).destroy_all

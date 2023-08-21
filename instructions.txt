@@ -1,0 +1,18 @@
+
+
+Add delayed job for running the GptService to estimate calories and update the database values.
+Context: See Estimated Calories Typing Mind conversation
+
+Delayed jobs documentation: https://github.com/betterment/delayed
+
+Code
+
+class CaloriesEstimationJob < ApplicationJob
+  queue_as :default
+
+  def perform
+    Dish.all.each do |dish|
+      dish.estimate_calories
+    end
+  end
+end
