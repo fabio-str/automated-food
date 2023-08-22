@@ -1,0 +1,14 @@
+<p>Hey there,</p>
+
+<p>your healthy lunch order is here for today:</p>
+
+<p><%= @dish_name %> (<%= @total_calories %>)</p>
+<p>Ingredients: <%= @ingredients %></p>
+
+<p>-------</p>
+
+<p>In case you're working from somewhere else today, feel free to <%= link_to 'change your delivery settings', address_url(@address) %></p>
+<p>If you want, you can also <%= link_to 'adjust your nutrition profile', nutrition_profile_url(@nutrition_profile) %>.</p>
+
+
+<p>Best,<br><%= link_to ENV['COMPANY_NAME'], ENV['BASE_URL'] %></p>
