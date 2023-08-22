@@ -9,7 +9,6 @@ class OrderMailer < ApplicationMailer
         @nutrition_profile = @user.nutrition_profile
 
         mail(to: user.email, subject: 'Your daily lunch order')
-
     end
 end
   

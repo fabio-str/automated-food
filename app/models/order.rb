@@ -3,6 +3,8 @@ class Order < ApplicationRecord
 
   validates :status, inclusion: { in: %w(pending canceled confirmed delivered), message: "%{value} is not a valid status" }
 
+  after_create :send_new_pending_order_mailer
+
   def self.change_meal(user)
     existing_order = user.orders.where(status: 'pending').first
 
@@ -29,6 +31,10 @@ class Order < ApplicationRecord
 
   def self.current_pending_order(user)
     user.orders.where(status: 'pending').first
+  end
+
+  def send_new_pending_order_mailer(user, order)
+    OrderMailer.new_pending_order(user, order).deliver if status == 'pending' # TODO: Adjust time that it syncs with pending order creation task
   end
 
 end
