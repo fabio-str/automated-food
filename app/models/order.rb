@@ -3,8 +3,6 @@ class Order < ApplicationRecord
 
   validates :status, inclusion: { in: %w(pending canceled confirmed delivered), message: "%{value} is not a valid status" }
 
-  after_create :send_new_pending_order_mailer
-
   def self.change_meal(user)
     existing_order = user.orders.where(status: 'pending').first
 
@@ -29,12 +27,14 @@ class Order < ApplicationRecord
     end
   end
 
-  def self.current_pending_order(user)
-    user.orders.where(status: 'pending').first
+  def self.create_random_dish_order(user)
+    dish = Dish.order("RANDOM()").first
+    order = self.new(user: user, status: 'pending', dish_id: dish.id, dish_name: dish.name, dish_ingredients: dish.ingredients, price: dish.price, total_calories: dish.total_calories)
+    order.save
   end
 
-  def send_new_pending_order_mailer(user, order)
-    OrderMailer.new_pending_order(user, order).deliver if status == 'pending' # TODO: Adjust time that it syncs with pending order creation task
+  def self.current_pending_order(user)
+    user.orders.where(status: 'pending').first
   end
 
 end

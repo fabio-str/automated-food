@@ -23,15 +23,8 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    dish = Dish.order("RANDOM()").first
-    @order = Order.new(user_id: params[:user_id], status: 'pending', dish_id: dish.id, dish_name: dish.name, dish_ingredients: dish.ingredients, price: dish.price, total_calories: dish.total_calories)
-    
-    if @order.save
-      redirect_to root_path, notice: "Your order has been created successfully."
-    else
-      flash[:error] = "Meal couldn't be created."
-      redirect_to root_path
-    end
+    Order.create_random_dish_order(current_user)
+    redirect_to root_path, notice: "Your order has been created successfully."
   end
 
   # PATCH/PUT /orders/1
