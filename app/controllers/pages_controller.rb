@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:logout]
 
-  def home
+  def lp
+    render layout: 'landing_page'
   end
 
   def logout

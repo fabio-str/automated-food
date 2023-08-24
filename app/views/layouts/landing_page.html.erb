@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-white">
+<html>
   <head>
     <%= metamagic site: ENV['COMPANY_NAME'], title: [:site, :title], separator: " | " %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,9 +11,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
-  <body class="h-full">
-    <main class="container mx-auto mt-14 px-6">
-      <%= render "shared/flash" %>
+  <body class="h-full bg-white">
+    <main class="h-full bg-white">
       <%= render "shared/header" %>
       <%= yield %>
     </main>

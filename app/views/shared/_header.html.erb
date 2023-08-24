@@ -1,4 +1,4 @@
-<header class="py-4 px-2" data-controller="header">
+<header class="py-6 px-6" data-controller="header">
   <nav class="flex items-center justify-between flex-wrap">
     <div class="flex items-center flex-no-shrink text-white mr-6">
       <% logo_path = current_user ? dashboard_index_path : root_path %>
@@ -20,8 +20,6 @@
         <% if current_user %>
           <%= link_to 'Admin', admin_dashboard_index_path, class: nav_link_classes('admin/dashboard') if current_user.admin? %>
           <%= link_to 'Dashboard', dashboard_index_path, class: nav_link_classes('dashboard') %>
-          <%= link_to 'Delivery Settings ', current_user.address, class: nav_link_classes('addresses') %>
-          <%= link_to 'Nutrition Profile', current_user.nutrition_profile, class: nav_link_classes('nutrition-profiles') %>
           <%= link_to 'Account', account_index_path, class: nav_link_classes('account') %>
           <%= link_to 'Logout', logout_path, class: nav_link_classes %>
         <% else %>

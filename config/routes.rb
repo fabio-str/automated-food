@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_up: 'signup' }
   get 'logout', to: 'pages#logout', as: 'logout'
-  get 'home', to: 'pages#home', as: 'home'
+  get 'lp', to: 'pages#lp', as: 'lp'
 
   resources :subscribe, only: [:index]
   resources :dashboard, only: [:index]
