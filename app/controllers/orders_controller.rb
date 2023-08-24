@@ -7,15 +7,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  # GET /orders/1 or /orders/1.json
-  def show
-  end
-
-  def edit
-    @order = Order.find(params[:id])
-  end  
-
-
   # GET /orders/new
   def new
     @order = Order.new
