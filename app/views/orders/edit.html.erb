@@ -1,0 +1,14 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl pb-12"><%= @order.dish_name %></h1>
+
+    <div class="mb-9">
+    <p><strong>Ingredients:</strong></p>
+    <%= @order.dish_ingredients %>
+    </div>
+
+    <%= render "feedback_form" %>
+
+    <div class="inline-block mt-6">
+      <%= link_to 'Back to all orders', orders_path, class: "font-medium text-sky-600 hover:text-sky-500" %>
+    </div>
+</div>

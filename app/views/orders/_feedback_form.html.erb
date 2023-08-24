@@ -1,0 +1,20 @@
+<%= form_for @order do |form| %>
+<div class="space-y-12">
+    <div class="sm:col-span-2">
+        <label for="user_rating" class="block text-sm font-medium leading-6 text-gray-900">How would you rate this dish?</label>
+        <%= form.number_field :user_rating, id: 'user_rating', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+    </div>
+
+    <div class="sm:col-span-3">
+        <label for="user_feedback" class="block text-sm font-medium leading-6 text-gray-900">What did you like or didn't like?</label>
+        <div class="mt-2">
+            <%= form.text_field :user_feedback, id: 'user_feedback', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+        </div>
+    </div>
+
+    <%= form.submit "Save", class: 'inline-block items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500' %>
+</div>
+
+<% end %>
+
+ <%# TODO: Form validations, 1-5 rating, rating required  %>

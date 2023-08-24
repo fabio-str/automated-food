@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ edit update destroy ]
 
-  # GET /orders or /orders.json
+  # GET /orders
   def index
     @orders = Order.all
+  end
+
+  def edit
   end
 
   # GET /orders/new

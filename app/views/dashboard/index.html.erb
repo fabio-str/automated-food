@@ -118,6 +118,7 @@
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Meal</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Calories</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
@@ -126,6 +127,13 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order.dish_name %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order.total_calories %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order.status %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">
+                    <% unless order.user_rating? %> 
+                      <%= link_to 'Give Feedback', edit_order_path(order), class: "font-medium text-sky-600 hover:text-sky-500" %>
+                    <% else %>
+                      <%= link_to 'View', edit_order_path(order), class: "font-medium text-sky-600 hover:text-sky-500" %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
