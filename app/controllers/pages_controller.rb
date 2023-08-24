@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def logout
     sign_out(current_user)
-    render "pages/home"
+    render "pages/lp"
   end
 
   def page
